@@ -1,0 +1,18 @@
+<h1 class="current-cateogry"><%= params[:category] %></h1>
+
+<% if @books.count == 0 %>
+  <h1>There are no books currently in this category</h1>
+<% else %>
+  <div class="row" style="padding: 50px; ">
+    <% @books.each do |book| %>
+    	<div class="col-md-3">
+	    	<a href="/books/<%= book.id %>">
+	    		<%= image_tag book.book_img.url(:book_index) %>
+	    	</a>
+	    	<h4 style="text-transform: capitalize; padding: 20px;">
+	    		<%= link_to IsCensored.check(book.title), book_path(book) %>
+	    	</h4>
+	    </div>
+    <% end %>
+  </div>
+<% end %>
